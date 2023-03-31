@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="reFresh.Views.InventoryPage"
+             Title="Inventory">
+
+    <!-- Add an item to the toolbar -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="{FontImage Glyph='+', Color=White, Size=22}" />
+    </ContentPage.ToolbarItems>
+
+    <!-- Display notes in a list -->
+    <CollectionView x:Name="itemsCollection"
+                        ItemsSource="{Binding AllItems}"
+                        Margin="20"
+                        HorizontalOptions="Fill"
+                        SelectionMode="Single"
+                        SelectionChanged="itemsCollection_SelectionChanged">
+
+        <!-- Designate how the collection of items are laid out -->
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+        </CollectionView.ItemsLayout>
+        <!-- Define the appearance of each item in the list -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid ColumnDefinitions="3*,*" RowDefinitions="*,*" ColumnSpacing="4" x:Name="ItemGrid">
+                    <Label Grid.Row="0" Grid.Column="0"
+                        Text="{Binding ItemName}" FontSize="20" VerticalOptions="Start"/>
+                    <HorizontalStackLayout Grid.Row="1" Grid.Column="0">
+                        <Label 
+                            Text="Expiring " FontSize="14" TextColor="#A1B6BF"/>
+                        <Label 
+                            Text="{Binding ExpirationDate, StringFormat='{0:MM/dd/yyyy}'}" FontSize="14" TextColor="Silver"/>
+                    </HorizontalStackLayout>
+                    <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                           Source="notification.png"
+                           Scale="0.4"
+                           HorizontalOptions="End"
+                           IsVisible="{Binding HasNotification}"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

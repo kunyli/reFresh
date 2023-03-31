@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="reFresh.Views.ShoppingListItem"
+             Title="New Shopping List Item">
+    <VerticalStackLayout Spacing="10" Margin="10">
+        <Entry x:Name="NameEntry"
+               Placeholder="Enter new item name"
+               Text="{Binding ItemName}"
+        />
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*" ColumnSpacing="4">
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="Quantity:"
+                   VerticalOptions="Center"
+            />
+            <Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                   x:Name="QuantityEntry"
+                   Placeholder="0"
+                   Text="{Binding Quantity}"
+            />
+            <Label Grid.Row="1" Grid.Column="0"
+                   Text="Store:"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                   x:Name="StoreEntry"
+                   Placeholder="Any"
+                   Text="{Binding Store}"
+            />
+        </Grid>
+        
+
+        <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" ColumnSpacing="4" RowSpacing="12">
+            <Button Text="Save"
+                    Clicked="SaveButton_Clicked" />
+
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="DeleteButton_Clicked" />
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                    Text="Move to Inventory"
+                    Clicked="MoveButton_Clicked" />
+            
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
